@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fastentrypoints-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fastentrypoints-{{ version }}.tar.gz
   sha256: ff284f1469bd65400599807d2c6284d5b251398e6e28811f5f77fd262292410b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - fastep=fastentrypoints:main
@@ -20,9 +20,9 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
-    - python
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -31,6 +31,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/ninjaaron/fast-entry_points
